@@ -4,7 +4,8 @@ const app = express();
 
 const whiteList = [
         'http://localhost:3421',
-        'https://localhost:3864'
+        'https://localhost:3864',
+        'http://Devansh:3001'
 ];
 
 var corsOptionsDelegate = (req, callback) => {

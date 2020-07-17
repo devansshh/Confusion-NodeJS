@@ -16,6 +16,7 @@ var promoRouter = require('./routes/promoRouter');
 var leaderRouter = require('./routes/leaderRouter');
 var uploadRouter = require('./routes/uploadRouter');
 var favoritesRouter = require('./routes/favoriteRouter');
+var commentRouter = require('./routes/commentRouter');
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -44,14 +45,11 @@ app.all('*', (req, res, next) => {
         res.redirect(307, 'https://' + req.hostname + ':' + app.get('secPort') + req.url)
     }
 })
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser('MY-SECRET-KEY'));
 
 app.use(passport.initialize());
 
@@ -65,6 +63,7 @@ app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
 app.use('/imageUpload', uploadRouter);
 app.use('/favorites', favoritesRouter);
+app.use('/comments',commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
